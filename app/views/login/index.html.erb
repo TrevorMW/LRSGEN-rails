@@ -1,0 +1,76 @@
+/#
+create_table "hotel", force: true do |t|
+
+  t.integer  "h_id"
+
+  t.string   "h_name"
+  t.string   "h_image_url"
+  t.string   "h_street"
+  t.string   "h_city"
+  t.string   "h_state"
+  t.string   "h_zip"
+  t.string   "h_region"
+  t.string   "h_type"
+
+  t.string   "h_phone"
+  t.string   "h_email"
+
+  t.float    "h_lat"
+  t.float    "h_lng"
+
+  t.boolean  "h_pets"
+  t.boolean  "h_smoking"
+
+  t.datetime "h_created_at"
+  t.datetime "h_updated_at"
+
+end
+
+create_table "user", force: true do |t|
+
+  t.string   "u_name"
+  t.string   "u_email"
+
+  t.boolean  "u_is_manager"
+  t.boolean  "u_is_superuser"
+
+  t.datetime "u_created_at"
+  t.datetime "u_updated_at"
+
+end
+
+create_table "reservation", force: true do |t|
+
+  t.integer  "r_id"
+  t.integer  "r_hotel_id"
+
+  t.string   "r_visitor_name"
+  t.string   "r_visitor_street"
+  t.string   "r_visitor_city"
+  t.string   "r_visitor_state"
+  t.string   "r_visitor_zip"
+  t.string   "r_visitor_country"
+  t.string   "r_room_type"
+
+  t.integer  "r_nights"
+  t.integer  "r_rooms"
+  t.integer  "r_adults"
+  t.integer  "r_children"
+
+  t.boolean  "r_pets"
+  t.boolean  "r_smoking"
+
+end
+
+create_table "report", force: true do |t|
+
+  t.integer  "report_id"
+
+  t.string   "report_type"
+  t.string   "signet"
+
+  t.datetime "created_at"
+  t.datetime "updated_at"
+
+end
+#/
