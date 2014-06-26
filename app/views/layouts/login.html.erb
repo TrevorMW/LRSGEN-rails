@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Conductor</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link href="///netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag  "application.css", media: "all", "data-turbolinks-track" => true %>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="wrapper login">
+  <div class="login-form-container">
+    <div class="login-box">
+    <div id="masthead"> <img src="" alt="" /> </div>
+      <form method="post" id="js-login" class="" action="/LRSGEN/assets/scripts/login.php" novalidate>
+    <div id="status" class="alert" style="display:none;"></div>
+      <div class="form-group">
+        <label>Username: <i>*</i></label>
+        <input type="text" class="form-control" name="username" placeholder="Enter username" data-regex="^([1-zA-Z0-1.\s]{1,100})$" required>
+      </div>
+      <div class="form-group">
+        <label>Password: <i>*</i></label>
+        <input type="password" class="form-control" name="password" data-regex="^([1-zA-Z0-1.\s]{1,100})$" required>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Location</label>
+        <select name="lrs-location" class="form-control">
+          <option value="29403">Downtown</option>
+          <option value="29464">Mt. Pleasant</option>
+          <option value="29406">North Charleston</option>
+        </select>
+      </div>
+      <div id="submit">
+      	<span class="glyphicon glyphicon-refresh" style="display:none;-webkit-animation:spin 2s infinite linear;"></span>&nbsp;
+      	<button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+
+  </div>
+  </div>
+</div>
+
+</body>
+</html>

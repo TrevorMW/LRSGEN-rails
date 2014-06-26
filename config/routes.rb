@@ -54,10 +54,10 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  root 'login#index'
+  root 'hotel#index'
 
   resources :hotel
   resources :report
-  resources :user 
+  resources :user
 
 end

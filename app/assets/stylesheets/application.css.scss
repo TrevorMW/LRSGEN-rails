@@ -1,0 +1,209 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_self
+ */
+
+ @import "bourbon";
+
+ /* ============ RESETS & EXTENTIONS ============ */
+
+*{
+  text-decoration:none !important;
+  outline: 0 !important;
+}
+
+ nav ul{
+   padding-left:0;
+ }
+
+.input-group{
+  width:auto;
+  max-width:50%;
+}
+
+
+/* ============ SCAFFOLDING ============ */
+
+body{
+  position:relative;
+  height:100vh;
+}
+
+.wrapper{
+  display:block;
+  width:100%;
+  clear:both;
+  position:relative;
+
+  &.login{
+    height:inherit;
+    display:table;
+  }
+
+  &.header{
+    @include linear-gradient(#333, #111);
+    border-top:2px solid #111;
+  }
+
+}
+
+main.wrapper{
+  height:100%;
+  position:fixed;
+  overflow-y:scroll;
+  overflow-x:hidden;
+  padding: 15px;
+}
+
+.login-form-container{
+  display:table-cell;
+  vertical-align:middle;
+}
+
+.login-box{
+  display:block;
+  max-width:300px;
+  margin: 0 auto;
+}
+
+.header header{
+  padding: 0 15px;
+  display:table;
+  width:100%;
+}
+
+header nav,
+header .user-box{
+  display:table-cell;
+  vertical-align:bottom;
+}
+
+.tools,
+.content{
+  display:block;
+  clear:both;
+
+}
+
+.tools{
+  text-align:right;
+}
+
+.content{
+  border:1px solid #eee;
+  margin-top:15px;
+  height:82%;
+}
+
+.main-alert{
+  position:absolute;
+  right:25px;
+  bottom:0;
+  width:100%;
+  max-width:300px;
+}
+
+/* ============ NAVIGATION ============ */
+
+nav.main{
+
+  & ul{
+    display:block;
+    width:100%;
+    margin:0;
+  }
+
+  & li{
+    display:inline-block;
+    width:auto;
+    margin: 0 0;
+    padding:0;
+    background-color:#dedede;
+    border-radius: 5px 5px 0 0;
+
+    &.active{
+      background-color:#fff;
+    }
+  }
+
+  & a,
+  & a:visited{
+    padding:4px 8px;
+    display:block;
+    color:#222;
+
+    &:hover{
+      color:#a3280d;
+    }
+  }
+}
+
+/* ============ USER ============ */
+
+header .user{
+  display:table;
+  width:100%;
+  padding: 5px 0 8px 0;
+  text-align:right;
+
+  & .user-img,
+  & .user-details{
+    display:table-cell;
+    vertical-align:middle;
+  }
+
+  & .user-img{
+    width:57px;
+
+    & img{
+      display:block;
+      width:100%;
+      height:100%;
+      border-radius:100px;
+    }
+  }
+}
+
+
+/* ============ TYPOGRAPHY ============ */
+
+.user{
+
+  & h3,
+  & small{
+    color:#fff;
+    margin: 5px;
+    padding: 0 5px;
+  }
+
+  & small a{
+    color:#a3280d;
+    padding-left:10px;
+  }
+}
+
+/* ============ FORMS ============ */
+
+
+.form-inline{
+  display:inline-block;
+  width:auto;
+  max-width:50%;
+  margin: 0;
+
+  & .input-group,
+  & select{
+    vertical-align:top;
+    display:inline-table;
+  }
+}
