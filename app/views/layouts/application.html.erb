@@ -24,8 +24,10 @@
   			<li><a href="" id=""><i class="fa fa-user"></i> Users</a></li>
   		</ul>
   	</nav>
+
     <div class="user-box">
       <div class="user">
+
         <div class="user-details">
           <h3>Trevor Wagner</h3>
           <small>
@@ -37,17 +39,16 @@
           <%= image_tag( 'dude.png' ) %>
         </div>
       </div>
+
     </div>
   </header>
 </div>
 
 <main class="wrapper">
-  <div class="tools">
-    <%= yield :tools %>
-  </div>
-  <div class="content">
+  <div class="row content">
     <%= yield :main %>
   </div>
+
 </main>
 
 <div class="main-alert">
@@ -55,6 +56,11 @@
     <%=  content_tag :div, content_tag(:p, value) + content_tag( :button, raw('&times;'), type: "button", class: "close", data:{ "dismiss" => "alert"} ), class: "alert alert-#{key}" %>
   <% end %>
 </div>
-
+<div class="tools-wrapper">
+  <button type="button" id="js-tools-trigger" class="btn btn-inverse"><i class="fa fa-wrench"></i></button>
+  <div class="tools" id="js-tools">
+    <%= yield :tools %>
+  </div>
+</div>
 </body>
 </html>

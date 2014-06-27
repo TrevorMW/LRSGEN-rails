@@ -10,7 +10,7 @@
       <% end %>
     </select>
     <div class="input-group">
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" placeholder="Search Hotels">
       <span class="input-group-btn">
         <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
       </span>
@@ -23,20 +23,26 @@
 
   <% @hotels.each do |h| %>
 
-    <div class="col-sm-3 col-md-3" data-filter="<%= h.hotel_name %> <%= h.hotel_type %>">
-      <div class="thumbnail">
-        <img src="<%= h.hotel_image_url %>" alt="...">
-        <div class="caption">
+    <div class=" col-lg-3 col-md-3" data-filter="<%= h.hotel_name %> <%= h.hotel_type %>">
+      <div class="hotel">
+        <div class="hotel-img">
+          <img src="<%= h.hotel_image_url %>" alt="...">
+        </div>
+        <div class="hotel-details">
           <strong><%= h.hotel_name %></strong>
           <p><% address = h.hotel_street %></p>
           <p><%=  %></p>
-          <div class="btn-group">
-            <a href="#" class="btn btn-danger" role="button"><i class="fa fa-trash-o"></i></a>
-            <a href="#" class="btn btn-warning" role="button"><i class="fa fa-edit"></i></a>
-          </div>
+        </div>
+        <div class="hotel-tools btn-group">
+          <a href="#" class="btn btn-lg btn-default" role="button"><i class="fa fa-trash-o"></i></a>
+          <a href="#" class="btn btn-lg btn-default" role="button"><i class="fa fa-edit"></i></a>
+          <a href="#" class="btn btn-lg btn-default" role="button"><i class="fa fa-map-marker"></i></a>
+          <a href="#" class="btn btn-lg btn-default" role="button"><i class="fa fa-plus"></i></a>
         </div>
       </div>
     </div>
+
+    
 
   <% end %>
 

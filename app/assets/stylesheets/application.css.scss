@@ -62,7 +62,6 @@ main.wrapper{
   position:fixed;
   overflow-y:scroll;
   overflow-x:hidden;
-  padding: 15px;
 }
 
 .login-form-container{
@@ -88,21 +87,51 @@ header .user-box{
   vertical-align:bottom;
 }
 
-.tools,
+
+.tools-wrapper,
 .content{
   display:block;
   clear:both;
-
 }
 
-.tools{
+.tools-wrapper{
   text-align:right;
+  position:absolute;
+  bottom:0;
+  display:block;
+  width:100%;
+  z-index:9;
+  @include linear-gradient(#333, #111);
+  border-top:1px solid #ccc;
+
+  & .tools{
+    padding: 15px;
+    display:none;
+  }
+
+  & > button{
+    position:absolute;
+    right:15px;
+    bottom:100%;
+    border-radius:0;
+    border-bottom:0;
+    background-color:#333;
+    color:#fff;
+    border-radius:5px 5px 0 0;
+
+    & i{
+      font-size:20px;
+      color:#fff;
+    }
+  }
 }
 
 .content{
-  border:1px solid #eee;
-  margin-top:15px;
-  height:82%;
+  border-top:15px solid #fff;
+  padding:0 15px 180px 15px;
+  height:100%;
+  position:fixed;
+  overflow-y:scroll;
 }
 
 .main-alert{
@@ -116,10 +145,11 @@ header .user-box{
 /* ============ NAVIGATION ============ */
 
 nav.main{
+  width:auto;
 
   & ul{
-    display:block;
-    width:100%;
+    display:inline-block;
+    width:auto;
     margin:0;
   }
 
@@ -207,3 +237,11 @@ header .user{
     display:inline-table;
   }
 }
+
+
+
+
+
+@import "hotel";
+@import "report";
+@import "user";
