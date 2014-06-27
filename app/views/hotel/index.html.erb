@@ -4,7 +4,10 @@
 
   <form class="form-inline" role="form" id="js-filter-form">
     <select class="form-control">
-      <option value="" selected></option>
+      <option value="" selected>-- select --</option>
+      <% @hotelCategories.each do |cats| %>
+        <option value="<%= cats.hotel_type %>"><%= cats.hotel_type %></option>
+      <% end %>
     </select>
     <div class="input-group">
       <input type="text" class="form-control">
@@ -13,5 +16,28 @@
       </span>
     </div>
   </form>
+
+<% end %>
+
+<% content_for :main do %>
+
+  <% @hotels.each do |h| %>
+
+    <div class="col-sm-3 col-md-3" data-filter="<%= h.hotel_name %> <%= h.hotel_type %>">
+      <div class="thumbnail">
+        <img src="<%= h.hotel_image_url %>" alt="...">
+        <div class="caption">
+          <strong><%= h.hotel_name %></strong>
+          <p><% address = h.hotel_street %></p>
+          <p><%=  %></p>
+          <div class="btn-group">
+            <a href="#" class="btn btn-danger" role="button"><i class="fa fa-trash-o"></i></a>
+            <a href="#" class="btn btn-warning" role="button"><i class="fa fa-edit"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
 
 <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624202031) do
+ActiveRecord::Schema.define(version: 20140627025508) do
 
   create_table "hotels", force: true do |t|
     t.string   "hotel"
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(version: 20140624202031) do
     t.integer  "hotel_pet_fee"
     t.boolean  "hotel_smoking"
     t.integer  "hotel_smoking_fee"
+    t.string   "hotel_type"
+    t.string   "hotel_region"
+    t.integer  "hotel_parking_fee"
   end
 
   create_table "reports", force: true do |t|
