@@ -1,0 +1,15 @@
+<% content_for :tools do %>
+
+
+<% end %>
+
+<% content_for :main do %>
+
+  <%= form_for( @editHotel, url: {action: 'update'}, html: { id: "js-form-regex" }) do |eh| %>
+
+    <%= eh.text_field( :hotel_name, class:"form-control", data: { regex: '/[A-Z][a-z][0-9]/'})  %>
+    <%= eh.submit "Create" %>
+
+  <% end %>
+
+<% end %>

@@ -14,6 +14,10 @@
   overflow:hidden;
   background-color:#f6f6f6;
 
+  & hr{
+    margin: 5px 0;
+  }
+
   & .btn,
   & .btn:first-child:not(:last-child),
   & .btn:last-child:not(:first-child),
@@ -32,6 +36,7 @@
   & .hotel-img{
     height:140px;
     overflow:hidden;
+    border-bottom:1px solid #333;
 
     & img{
       width:100%;

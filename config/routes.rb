@@ -56,7 +56,13 @@ Rails.application.routes.draw do
 
   root 'hotel#index'
 
-  resources :hotel
+  resources :hotel do
+    resources :directions
+    collection do
+      get 'checkHotel'
+    end
+  end
+  resources :reservation
   resources :report
   resources :user
 
