@@ -6,6 +6,12 @@
 
 <% content_for :main do %>
 
-  <div id="mapCanvas" data-center="<%= @coords %>"></div>
+  <div class="col-lg-6">
+    <div id="map-canvas" style="width:100%; height:600px; border:1px solid #ddd;" data-center="<%= @coords %>"></div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="directions" id="js-map-directions"></div>
+  </div>
 
 <% end %>

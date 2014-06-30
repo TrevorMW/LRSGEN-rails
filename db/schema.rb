@@ -38,10 +38,10 @@ ActiveRecord::Schema.define(version: 20140627025508) do
 
   create_table "reports", force: true do |t|
     t.string   "report"
+    t.string   "report_format"
+    t.string   "report_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "report_type"
-    t.string   "report_format"
   end
 
   create_table "reservations", force: true do |t|

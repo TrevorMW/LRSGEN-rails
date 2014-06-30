@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'bourbon'
+gem 'imgur', '~> 0.2.0'
 
 
 gem 'mysql'
