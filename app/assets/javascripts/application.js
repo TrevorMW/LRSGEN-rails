@@ -19,10 +19,9 @@
 ;(function( $, window, undefined ){
 
   // GLOBAL SCOPE VARIABLES
-  var error = $('#js-form-error'),
-    map,
-    geocoder,
-    flag;
+  var map,
+      geocoder,
+      flag;
 
   var gMaps = {
     'codeAddress':function(a, b) {
@@ -50,26 +49,32 @@
   }
 
 
+
   // TOGGLE TOOLBAR
+
   $(document).on('click', '#js-tools-trigger', function(){
-  $('#js-tools').slideToggle();
+    $('#js-tools').slideToggle();
   });
 
 
+
   // CHECK HOTEL NAME AGAINST DATABSE RECORDS
+
   $(document).on('blur','#js-check-hotel-name', function(){
-    a = $(this),
-    b = a.parent();
-    $.get( a.data('validate'),
-    { hotel: a.val()
-    }).success(function(){ b.removeClass('has-error has-success').addClass('has-success');
-    }).error(function(){ b.removeClass('has-error has-success').addClass('has-error');
-    });
+    var a = $(this),
+        b = a.parent();
+
+        $.get( a.data('validate'),
+        { hotel: a.val()
+        }).success(function(){ b.removeClass('has-error has-success').addClass('has-success');
+        }).error(function(){ b.removeClass('has-error has-success').addClass('has-error');
+        });
   });
 
 
 
   // GEOCODE ANY PART OF ADDRESS STRING FOR PINPOINT ACCURACY OF HOTEL
+
   $(document).on('blur','.hotel-location', function( event ){
    var geocodeString = '';
    $('.hotel-location').each(function(){
@@ -79,48 +84,63 @@
   });
 
 
+
   // SUBMIT NEW HOTEL DATA
+  $(document).ready( function(){
 
-  $('#js-new-hotel').submit( function( event ){
-  event.preventDefault();
-    var form = $(this),
-        formAction = form.attr('data-action');
-        formData = form.serialize();
+    $('#js-new-hotel').submit( function( event ){
+    event.preventDefault();
+      var form = $(this),
+          formAction = form.attr('data-action');
+          formData = form.serialize();
 
-    error.html('').hide();
+      error.html('').hide();
 
-    $(this).find('[data-regex]').each( function(){
-      formTools.check_regex( $(this) )
+      $(this).find('[data-regex]').each( function(){
+        formTools.check_regex( $(this) )
+      });
+
+      if( flag == true ){
+
+       $.ajax({ url:formAction, type:'GET', data:formData,
+          async:false,
+          headers : { "cache-control": "no-cache" },
+          success:function( data ){
+              var data = $.parseJSON(data);
+              error.html(data.message)
+              if( data.status == true ){
+                error.addClass("alert alert-success");
+                form.reset();
+              } else {
+                error.addClass("alert alert-danger");
+              }
+              error.slideDown();
+          },
+          cache:false,
+          contentType:false,
+          processData:false
+       });
+      }
     });
 
-    if( flag == true ){
-
-     $.ajax({ url:formAction, type:'GET', data:formData,
-        async:false,
-        headers : { "cache-control": "no-cache" },
-        success:function( data ){
-            var data = $.parseJSON(data);
-            error.html(data.message)
-            if( data.status == true ){
-              error.addClass("alert alert-success");
-              form.reset();
-            } else {
-              error.addClass("alert alert-danger");
-            }
-            error.slideDown();
-        },
-        cache:false,
-        contentType:false,
-        processData:false
-     });
-    }
-  });
+  })
 
 
   // GOOGLE MAP HOTEL GEOCODE
   function initialize( geocodeString ) {
 
-    var mapOptions = { zoom: 10, center: new google.maps.LatLng(-34.397, 150.644) };
+    var initCoords = $('#map-canvas').data('coords'); console.log(initCoords)
+
+
+    if( typeof initCoords == 'object' ){
+      initCoords = new google.maps.LatLng(initCoords.lat, initCoords.lng)
+    } else {
+      initCoords = new google.maps.LatLng(-34.397, 150.644) ;
+    }
+
+    console.log(initCoords)
+
+    var mapOptions = { zoom: 12, center: initCoords } ;
     var mapID = document.getElementById('map-canvas');
 
     map = new google.maps.Map(mapID, mapOptions);
@@ -143,45 +163,11 @@
   }
 
 
-  //
   if( typeof google == "object"){
     google.maps.event.addDomListener(window, 'load', initialize);
   }
 
 
-  // IMGUR FILE UPLOAD AND RETURN LINK - API ID 96d8d26a87f164a
-  $(document).ready(function(){
-    $('#js-new-hotel-image').submit(function( event ) { alert('asdasd')
-      event.preventDefault();
-      var form = $(this),
-          formBtn = form.find('button'),
-          formData = new FormData(form[0]),
-          urlField = $('#js-hotel-image-src'),
-          imageField = $('#js-image-window');
 
-      error.html('');
-
-      $.ajax({
-          url:'/hotel/upload',
-          type:'POST',
-          data:formData,
-          async:false,
-          headers : { "cache-control": "no-cache" },
-          success:function ( imgurData ) {
-              var imgurData = JSON.parse(imgurData);
-              if ( imgurData.success == true ) {
-                urlField.val( imgurData.data.link );
-                imageField.html('<img src='+imgurData.data.link+' style="height:100%; width:auto;" />');
-                  form.trigger('reset');
-              } else {
-                  error.html( imgurData.success ).addClass('alert-danger');
-              }
-          },
-          cache:false,
-          contentType:false,
-          processData:false
-       });
-    });
-  })
 
 })( jQuery, window );

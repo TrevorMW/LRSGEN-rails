@@ -17,6 +17,7 @@ class HotelController < ApplicationController
   def new
     @hotel = Hotel.new()
     @hotelCats = Hotel.get_hotel_categories
+    flash[:success] = "Client #{ id } was successfully updated."
   end
 
 
@@ -28,9 +29,10 @@ class HotelController < ApplicationController
 
   # EDIT HOTEL
   def edit
-    id = request.params[:id]
-    @editHotel = Hotel.find(id)
+    h = Hotel.find( request.params[:id] )
+    @hotel = h
     @hotelCats = Hotel.get_hotel_categories
+    @coords = { :lat => h.hotel_lat, :lng => h.hotel_lng }.to_json
   end
 
 
@@ -57,15 +59,16 @@ class HotelController < ApplicationController
 
   # ANONYMOUS IMGUR API UPLOAD THAT RETURNS JSON
   def upload
-    name = request.params[:image_name]
-    @api_key = '647a88812a5dc2a'
-    c = Curl::Easy.new("http://imgur.com/api/upload.json")
-    c.multipart_form_post = true
-    c.http_post( Curl::PostField.content('key', @api_key),
-                 Curl::PostField.file('image', name ) )
-    response = Crack::JSON.parse c.body_str
-    raise ImgurError, response["rsp"]["error_msg"] if response["rsp"]["stat"] == "fail"
-    return response
+    respond_to do ||
+      name = params[:image_name]
+      @api_key = '647a88812a5dc2a'
+      c = Curl::Easy.new("http://imgur.com/api/upload.json")
+      c.multipart_form_post = true
+      c.http_post( Curl::PostField.content('key', @api_key),
+                   Curl::PostField.file('image', name ) )
+      response = Crack::JSON.parse c.body_str
+      raise ImgurError, response["rsp"]["error_msg"] if response["rsp"]["stat"] == "fail"
+    end
   end
 
 
