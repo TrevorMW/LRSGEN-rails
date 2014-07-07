@@ -5,7 +5,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :user_email
       t.boolean :user_is_manager
       t.boolean :user_is_superadmin
-
       t.timestamps
     end
   end

@@ -6,30 +6,35 @@ class HotelController < ApplicationController
     @hotelCategories = Hotel.get_hotel_categories
   end
 
+
   # SHOW INDIVIDUAL HOTEL PAGE
   def show
     @id = request.params[:id]
-
   end
+
 
   # FORM PAGE TO CREATE NEW HOTEL
   def new
     @hotel = Hotel.new()
     @hotelCats = Hotel.get_hotel_categories
+    flash[:success] = "Client #{ id } was successfully updated."
   end
+
 
   # CREATE METHOD
   def create
 
   end
 
+
   # EDIT HOTEL
   def edit
-    id = request.params[:id]
-    @editHotel = Hotel.find(id)
+    h = Hotel.find( request.params[:id] )
+    @hotel = h
     @hotelCats = Hotel.get_hotel_categories
-
+    @coords = { :lat => h.hotel_lat, :lng => h.hotel_lng }.to_json
   end
+
 
   # DESTROY METHOD
   def destroy
@@ -39,6 +44,8 @@ class HotelController < ApplicationController
 		redirect_to action: :index
   end
 
+
+  # CHECK TO SEE IF HOTEL NAME EXISTS
   def checkHotel
     h = Hotel.where("hotel_name = :hotel", {:hotel => params[:hotel] } ).count
     if h != 0
@@ -48,5 +55,21 @@ class HotelController < ApplicationController
     end
     return
   end
+
+
+  # ANONYMOUS IMGUR API UPLOAD THAT RETURNS JSON
+  def upload
+    respond_to do ||
+      name = params[:image_name]
+      @api_key = '647a88812a5dc2a'
+      c = Curl::Easy.new("http://imgur.com/api/upload.json")
+      c.multipart_form_post = true
+      c.http_post( Curl::PostField.content('key', @api_key),
+                   Curl::PostField.file('image', name ) )
+      response = Crack::JSON.parse c.body_str
+      raise ImgurError, response["rsp"]["error_msg"] if response["rsp"]["stat"] == "fail"
+    end
+  end
+
 
 end

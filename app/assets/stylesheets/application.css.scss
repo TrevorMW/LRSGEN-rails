@@ -132,6 +132,8 @@ header .user-box{
   height:100%;
   position:fixed;
   overflow-y:scroll;
+  width:100%;
+  margin: 0 auto;
 }
 
 .main-alert{
@@ -225,7 +227,7 @@ header .user{
 /* ============ FORMS ============ */
 
 
-.form-inline{
+.tools .form-inline{
   display:inline-block;
   width:auto;
   max-width:50%;
@@ -288,12 +290,11 @@ form{
       max-width:100%;
     }
   }
-
-
 }
 
 
 
 @import "hotel";
+@import "directions";
 @import "report";
 @import "user";

@@ -55,6 +55,7 @@ Rails.application.routes.draw do
   #   end
 
   root 'hotel#index'
+  post 'hotel/upload', to: 'hotel#upload'
 
   resources :hotel do
     resources :directions
@@ -62,6 +63,7 @@ Rails.application.routes.draw do
       get 'checkHotel'
     end
   end
+
   resources :reservation
   resources :report
   resources :user

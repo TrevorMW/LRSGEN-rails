@@ -1,0 +1,148 @@
+
+---
+hotels:
+  columns:
+  - id
+  - hotel
+  - created_at
+  - updated_at
+  - hotel_name
+  - hotel_street
+  - hotel_city
+  - hotel_state
+  - hotel_zip
+  - hotel_phone
+  - hotel_email
+  - hotel_lat
+  - hotel_lng
+  - hotel_image_url
+  - hotel_pets
+  - hotel_pet_fee
+  - hotel_smoking
+  - hotel_smoking_fee
+  - hotel_type
+  - hotel_region
+  - hotel_parking_fee
+  records: 
+  - - 2
+    - 
+    - '2014-06-27 03:08:42.771753'
+    - '2014-06-27 03:33:40.300296'
+    - Best Western Plus Airport Inn
+    - '2470 Prospect Drive '
+    - North Charleston
+    - SC
+    - '29406'
+    - "(843) 574-0911"
+    - 
+    - 0.0
+    - 0.0
+    - http://i0.bookcdn.com/data/Photos/OriginalPhoto/86/8649/8649300/Best-Western-Plus-Airport-Inn--Suites-photos-Exterior.JPEG
+    - true
+    - 0
+    - false
+    - 
+    - North Charleston
+    - 
+    - 0
+  - - 4
+    - 
+    - '2014-06-27 12:41:16.672469'
+    - '2014-06-27 19:33:52.382833'
+    - Andrew Pinckney Inn
+    - 40 Pinckney Street
+    - Charleston
+    - SC
+    - '29403'
+    - "(843) 937-8800"
+    - 
+    - 32.770649
+    - -79.9311
+    - http://andrewpinckneyinn.com/wp-content/uploads/2014/03/API-Exterior-Crop-WEB.jpg
+    - false
+    - 0
+    - false
+    - 
+    - Historic Inns
+    - 
+    - 20
+  - - 5
+    - 
+    - '2014-06-27 21:29:43.345262'
+    - '2014-06-27 21:30:37.299471'
+    - 1843 Battery Carriage House Inn
+    - 20 South Battery
+    - Charleston
+    - SC
+    - '29403'
+    - "(843) 727-3100"
+    - 
+    - 32.770649
+    - -79.9311
+    - http://media-cdn.tripadvisor.com/media/photo-s/01/19/5e/c6/charleston.jpg
+    - false
+    - 0
+    - false
+    - 
+    - Bed and Breakfast
+    - 
+    - 20
+  - - 6
+    - 
+    - '2014-06-28 15:08:29.577383'
+    - '2014-06-28 15:10:52.373802'
+    - Charleston Place Hotel
+    - 205 Meeting Street
+    - Charleston
+    - SC
+    - '29403'
+    - "(843) 722-4900"
+    - 
+    - 32.770649
+    - -79.9311
+    - http://charlestonplacemeetings.com/wp-content/uploads/2011/10/home_2.jpg
+    - false
+    - 0
+    - false
+    - 
+    - Historic Hotels
+    - 
+    - 20
+  - - 7
+    - 
+    - '2014-06-28 15:16:26.940378'
+    - '2014-06-28 15:16:26.940378'
+    - Fulton Lane Inn
+    - 202 King Street
+    - Charleston
+    - SC
+    - '29403'
+    - "(843) 720-2600"
+    - 
+    - 32.770649
+    - -79.9311
+    - ''
+    - false
+    - 0
+    - false
+    - 
+    - Historic Inns
+    - 
+    - 12
+
+---
+reports:
+  columns:
+  - id
+  - report
+  - created_at
+  - updated_at
+  - report_type
+  - report_format
+  records: 
+  - - 1
+    - report-1
+    - '2014-06-27 02:26:21.157261'
+    - '2014-06-27 02:26:21.157261'
+    - 
+    - 
