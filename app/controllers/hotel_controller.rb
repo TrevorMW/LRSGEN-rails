@@ -24,6 +24,7 @@ class HotelController < ApplicationController
   # CREATE METHOD
   def create
 
+    
   end
 
 
@@ -33,6 +34,12 @@ class HotelController < ApplicationController
     @hotel = h
     @hotelCats = Hotel.get_hotel_categories
     @coords = { :lat => h.hotel_lat, :lng => h.hotel_lng }.to_json
+  end
+
+
+  def update
+
+
   end
 
 
