@@ -23,7 +23,8 @@ class HotelController < ApplicationController
 
   # CREATE METHOD
   def create
-    flash[:success] = "Hotel was successfully created."
+
+    
   end
 
 
@@ -38,7 +39,7 @@ class HotelController < ApplicationController
 
   def update
 
-    
+
   end
 
 
