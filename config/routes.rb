@@ -67,5 +67,6 @@ Rails.application.routes.draw do
   resources :reservation
   resources :report
   resources :user
+  resources :rates
 
 end
