@@ -163,9 +163,41 @@
   }
 
 
+  /*
   if( typeof google == "object"){
     google.maps.event.addDomListener(window, 'load', initialize);
   }
+  */
+
+  $(document).ready(function(){
+
+  $('td[contenteditable]').keyup(function() {
+  	delay(function(){
+  		var id = $(this).closest('tr').data('edit-id'),
+          field = $(this).data('edit-field'),
+          val = $(this).text();
+      var data = { 'id': id, 'field': field, 'val': val };
+
+  		$.ajax({
+  			type:"post",
+  			url:"/rates/save_editable_cell",
+  			data:"text="+text,
+  			success:function(data){
+  				console.log('success bro!');
+  			}
+  		});
+  	}, 500 );
+  });
+
+});
+
+  var delay = (function(){
+  	var timer = 0;
+  	return function(callback, ms){
+  		clearTimeout (timer);
+  		timer = setTimeout(callback, ms);
+  	};
+  })();
 
 
 

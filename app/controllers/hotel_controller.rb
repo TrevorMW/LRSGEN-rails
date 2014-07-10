@@ -13,6 +13,7 @@ class HotelController < ApplicationController
   end
 
 
+
   # FORM PAGE TO CREATE NEW HOTEL
   def new
     @hotel = Hotel.new()
@@ -24,7 +25,7 @@ class HotelController < ApplicationController
   # CREATE METHOD
   def create
 
-    
+
   end
 
 

@@ -20,10 +20,10 @@
         </li>
         <li class="right">
          <label>Hotel Region:</label>
-         <%= select_tag "hotel_type",
-                         options_from_collection_for_select( @hotelCats, "hotel_type", "hotel_type" ),
-                         class: "form-control input-sm",
-                         :include_blank => true  %>
+         <%= f.select :hotel_type,
+                      options_for_select( @hotelCats.collect { |cat| [cat.hotel_type,cat.hotel_type] } ),
+                      { include_blank: 'Select hotel region' },
+                      class: "form-control input-sm"   %>
         </li>
 
         <li class="left">
@@ -168,7 +168,7 @@
                            readonly:true %>
         </li>
         <li class="full submit">
-         <button value="submit" class="btn btn-sm btn-danger">Create Hotel</button>
+          <%= f.button "Create Hotel", class: "btn btn-sm btn-danger" %>
         </li>
 
       </ul>

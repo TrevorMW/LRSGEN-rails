@@ -1,0 +1,29 @@
+<%= content_for :main do %>
+
+  <table class="table table-striped table-condensed table-bordered">
+
+    <thead>
+      <th>Hotel Name</th>
+      <th>Hotel Phone</th>
+      <th>Hotel Contact</th>
+      <th>Hotel Rates</th>
+    </thead>
+
+    <tbody>
+
+      <% @hotels.each do |h| %>
+
+        <tr data-edit-id="<%= h.id %>">
+          <td><%= h.hotel_name %></td>
+          <td><%= h.hotel_phone %></td>
+          <td data-edit-field="hotel_concierge" contenteditable><%= h.hotel_concierge %></td>
+          <td data-edit-field="hotel_current_rate" contenteditable><%= h.hotel_current_rate %></td>
+        </tr>
+
+      <% end %>
+
+    </tbody>
+
+  </table>
+
+<% end %>
