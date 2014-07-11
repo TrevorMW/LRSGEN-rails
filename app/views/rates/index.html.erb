@@ -1,6 +1,6 @@
-<%= content_for :main do %>
+<%= content_for :main do %> <%= @h %>
 
-  <table class="table table-striped table-condensed table-bordered">
+  <table class="table ">
 
     <thead>
       <th>Hotel Name</th>
@@ -14,10 +14,10 @@
       <% @hotels.each do |h| %>
 
         <tr data-edit-id="<%= h.id %>">
-          <td><%= h.hotel_name %></td>
-          <td><%= h.hotel_phone %></td>
-          <td data-edit-field="hotel_concierge" contenteditable><%= h.hotel_concierge %></td>
-          <td data-edit-field="hotel_current_rate" contenteditable><%= h.hotel_current_rate %></td>
+          <td style="width:25%;"><%= h.hotel_name %></td>
+          <td style="width:15%;"><%= h.hotel_phone %></td>
+          <td style="width:15%;" data-edit-field="hotel_concierge" contenteditable><%= h.hotel_concierge %></td>
+          <td style="width:35%;"data-edit-field="hotel_current_rate" contenteditable><%= h.hotel_current_rate %></td>
         </tr>
 
       <% end %>
