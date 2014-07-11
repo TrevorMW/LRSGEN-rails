@@ -4,4 +4,8 @@ class Hotel < ActiveRecord::Base
     @hotelCats = Hotel.select(:hotel_type).uniq.order(:hotel_type)
   end
 
+  def self.checkHotel( hotel_name )
+    return Hotel.where("hotel_name = :hotel", {:hotel => hotel_name } ).count
+  end
+
 end

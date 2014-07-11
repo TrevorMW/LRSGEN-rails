@@ -18,7 +18,6 @@ class HotelController < ApplicationController
   def new
     @hotel = Hotel.new()
     @hotelCats = Hotel.get_hotel_categories
-    flash[:success] = "Client #{ id } was successfully updated."
   end
 
 
@@ -55,7 +54,7 @@ class HotelController < ApplicationController
 
   # CHECK TO SEE IF HOTEL NAME EXISTS
   def checkHotel
-    h = Hotel.where("hotel_name = :hotel", {:hotel => params[:hotel] } ).count
+    h = Hotel.checkHotel( params[:hotel] )
     if h != 0
       render :nothing => true, :status => 409
     else

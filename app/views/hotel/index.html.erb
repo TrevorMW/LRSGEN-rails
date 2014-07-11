@@ -38,7 +38,7 @@
           Parking: $<%= h.hotel_parking_fee %></small>
         </div>
         <div class="hotel-tools btn-group">
-          <%= link_to raw('<i class="fa fa-trash-o"></i>'), hotel_path(h.id), class:"btn btn-lg btn-default", action: 'destroy', confirm: "Are you sure you want to delete #{h.hotel_name}?"  %>
+          <%= link_to raw('<i class="fa fa-trash-o"></i>'), hotel_path(h.id), method: :delete, class:"btn btn-lg btn-default", confirm: "Are you sure you want to delete #{h.hotel_name}?" %>
           <%= link_to raw('<i class="fa fa-edit"></i>'), edit_hotel_path(h.id), class:"btn btn-lg btn-default" %>
           <%= link_to raw('<i class="fa fa-map-marker"></i>'), hotel_directions_path(h.id), class:"btn btn-lg btn-default" %>
           <%= link_to raw('<i class="fa fa-plus"></i>'), new_reservation_url(), class:"btn btn-lg btn-default", action: 'new' %>

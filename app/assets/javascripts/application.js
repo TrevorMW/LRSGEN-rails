@@ -171,25 +171,31 @@
 
   $(document).ready(function(){
 
-  $('td[contenteditable]').keyup(function() {
-  	delay(function(){
-  		var id = $(this).closest('tr').data('edit-id'),
-          field = $(this).data('edit-field'),
-          val = $(this).text();
-      var data = { 'id': id, 'field': field, 'val': val };
+    $('td[contenteditable]').keyup(function() {
+      var td = $(this);
+      td.addClass('edit');
+    	delay(function(){
 
-  		$.ajax({
-  			type:"post",
-  			url:"/rates/save_editable_cell",
-  			data:"text="+text,
-  			success:function(data){
-  				console.log('success bro!');
-  			}
-  		});
-  	}, 500 );
+        var data = { 'id': td.closest('tr').data('edit-id'),
+                     'field': td.data('edit-field'),
+                     'val': $(td).text() };
+    		$.ajax({
+    			type:"post",
+    			url:"/rates/"+ data.id +"/saveCells",
+    			data: decodeURIComponent( $.param(data) ),
+    			success:function(data){
+    				console.log(data);
+    			}
+    		});
+
+    	}, 500 );
+    });
+
   });
 
-});
+  $(document).on('focus', 'td[contenteditable]', function(){
+    $(this).addClass('edit');
+  })
 
   var delay = (function(){
   	var timer = 0;
