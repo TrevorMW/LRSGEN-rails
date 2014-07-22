@@ -24,6 +24,12 @@ class HotelController < ApplicationController
   # CREATE METHOD
   def create
 
+    h = Hotel.create( hotel_params )
+    h.save()
+
+    respond_to do |r|
+      r.html{ redirect_to action: :index }
+    end
 
   end
 
@@ -49,6 +55,14 @@ class HotelController < ApplicationController
     h = Hotel.find(id).destroy
 		flash[:warning] = "Client #{ id } was successfully deleted."
 		redirect_to action: :index
+  end
+
+
+  def hotel_params()
+      params.require(:hotel).permit(:hotel_name,:hotel_street,:hotel_city,:hotel_state,:hotel_zip,:hotel_phone,
+                                    :hotel_email,:hotel_lat,:hotel_lng,:hotel_image_url,:hotel_pets,
+                                    :hotel_pet_fee,:hotel_smoking,:hotel_smoking_fee,:hotel_type,
+                                    :hotel_region,:hotel_parking_fee,:hotel_current_rate,:hotel_concierge )
   end
 
 
