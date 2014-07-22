@@ -13,18 +13,24 @@ class HotelController < ApplicationController
   end
 
 
+
   # FORM PAGE TO CREATE NEW HOTEL
   def new
     @hotel = Hotel.new()
     @hotelCats = Hotel.get_hotel_categories
-    flash[:success] = "Client #{ id } was successfully updated."
   end
 
 
   # CREATE METHOD
   def create
 
-    
+    h = Hotel.create( hotel_params )
+    h.save()
+
+    respond_to do |r|
+      r.html{ redirect_to action: :index }
+    end
+
   end
 
 
@@ -52,9 +58,17 @@ class HotelController < ApplicationController
   end
 
 
+  def hotel_params()
+      params.require(:hotel).permit(:hotel_name,:hotel_street,:hotel_city,:hotel_state,:hotel_zip,:hotel_phone,
+                                    :hotel_email,:hotel_lat,:hotel_lng,:hotel_image_url,:hotel_pets,
+                                    :hotel_pet_fee,:hotel_smoking,:hotel_smoking_fee,:hotel_type,
+                                    :hotel_region,:hotel_parking_fee,:hotel_current_rate,:hotel_concierge )
+  end
+
+
   # CHECK TO SEE IF HOTEL NAME EXISTS
   def checkHotel
-    h = Hotel.where("hotel_name = :hotel", {:hotel => params[:hotel] } ).count
+    h = Hotel.checkHotel( params[:hotel] )
     if h != 0
       render :nothing => true, :status => 409
     else
