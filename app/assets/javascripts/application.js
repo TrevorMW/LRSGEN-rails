@@ -96,8 +96,6 @@
             formAction = form.attr('data-action');
             formData = form.serialize();
 
-        error.html('').hide();
-
         $(this).find('[data-regex]').each( function(){
           formTools.check_regex( $(this) )
         });
@@ -131,6 +129,10 @@
     // GOOGLE MAP HOTEL GEOCODE
     function initialize( a ) {
 
+      // DEFINE LAT/LONG BOXES FOR DRAGGABLE MARKER
+      var lat = $('#js-hotel-lat'),
+          lng = $('#js-hotel-lng');
+
       var b = $('#map-canvas').data('coords'); // GET INITIAL COORDS
 
       // IF NO INITIAL COORDS, MAKE SOME { REVISIT TO ADD USER LOCATION }
@@ -152,27 +154,36 @@
         c = a.split(' ').join('+');
 
         gMaps.codeAddress(c, function(d){
-          // DEFINE LAT/LONG BOXES FOR DRAGGABLE MARKER
-          var lat = $('#js-hotel-lat'),
-              lng = $('#js-hotel-lng');
 
           // SET ZOOM TO GEOCODED ADDRESS
           m.setCenter(d);
           m.setZoom(17);
 
+          // ADD EVENT LISTENER FOR DRAG ON MARKER
+          var marker = new google.maps.Marker({ position: d, map: m, draggable:true });
+
           // ADD GEOCODED COORDINATES TO FORM BOXES
           lat.val( d.lat() );
           lng.val( d.lng() );
 
-          // ADD EVENT LISTENER FOR DRAG ON MARKER
-          var marker = new google.maps.Marker({ position: d, map: map, draggable:true });
-          google.maps.event.addListener( marker, 'dragend', function( event ) {
-            lat.val( event.latLng.lat() );
-            lng.val( event.latLng.lng() );
-          });
-
         });
+
+      } else {
+
+        // ADD EVENT LISTENER FOR DRAG ON MARKER
+        var marker = new google.maps.Marker({ position: b, map: m, draggable:true });
+
+        // SET ZOOM TO GEOCODED ADDRESS
+        m.setCenter(b);
+        m.setZoom(17);
+
       }
+
+      google.maps.event.addListener( marker, 'dragend', function( event ) { console.log( event.latLng.lat(), event.latLng.lng() )
+        lat.val( event.latLng.lat() );
+        lng.val( event.latLng.lng() );
+      });
+
     }
 
 
