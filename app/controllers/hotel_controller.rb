@@ -13,7 +13,6 @@ class HotelController < ApplicationController
   end
 
 
-
   # FORM PAGE TO CREATE NEW HOTEL
   def new
     @hotel = Hotel.new()
@@ -23,13 +22,9 @@ class HotelController < ApplicationController
 
   # CREATE METHOD
   def create
+    @h = Hotel.create( params[:hotel] )
+    @h.save()
 
-    h = Hotel.create( hotel_params )
-    h.save()
-
-    respond_to do |r|
-      r.html{ redirect_to action: :index }
-    end
 
   end
 
@@ -44,7 +39,14 @@ class HotelController < ApplicationController
 
 
   def update
-
+    h = Hotel.find( params[:id] )
+    if( h.update( hotel_attributes ) )
+      flash[:success] = "#{h.hotel_name} sucessfully updated"
+      redirect_to action: :index
+    else
+      flash[:danger] = "Update unsuccessful"
+      redirect_to action: :edit
+    end
 
   end
 
@@ -55,14 +57,6 @@ class HotelController < ApplicationController
     h = Hotel.find(id).destroy
 		flash[:warning] = "Client #{ id } was successfully deleted."
 		redirect_to action: :index
-  end
-
-
-  def hotel_params()
-      params.require(:hotel).permit(:hotel_name,:hotel_street,:hotel_city,:hotel_state,:hotel_zip,:hotel_phone,
-                                    :hotel_email,:hotel_lat,:hotel_lng,:hotel_image_url,:hotel_pets,
-                                    :hotel_pet_fee,:hotel_smoking,:hotel_smoking_fee,:hotel_type,
-                                    :hotel_region,:hotel_parking_fee,:hotel_current_rate,:hotel_concierge )
   end
 
 
@@ -90,6 +84,17 @@ class HotelController < ApplicationController
       response = Crack::JSON.parse c.body_str
       raise ImgurError, response["rsp"]["error_msg"] if response["rsp"]["stat"] == "fail"
     end
+  end
+
+
+
+  private
+
+  def hotel_attributes
+      params.require(:hotel).permit(:hotel_name,:hotel_street,:hotel_city,:hotel_state,:hotel_zip,:hotel_phone,
+                                    :hotel_email,:hotel_lat,:hotel_lng,:hotel_image_url,:hotel_pets,
+                                    :hotel_pet_fee,:hotel_smoking,:hotel_smoking_fee,:hotel_type,
+                                    :hotel_region,:hotel_parking_fee )
   end
 
 
