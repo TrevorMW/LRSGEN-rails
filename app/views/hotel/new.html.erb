@@ -28,7 +28,7 @@
 -->
 <hr />
 
-  <%= form_for @hotel, url: { action: 'create' }, html: { class: "new-hotel", id: "js-new-hotel" } do |f| %>
+  <%= form_for @hotel, method: :patch, html: { class: "new-hotel", id: "js-new-hotel" } do |f| %>
 
    		<fieldset>
      		<ul>

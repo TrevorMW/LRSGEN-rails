@@ -6,7 +6,8 @@
 <% content_for :main do %>
 
   <div class="col-lg-6">
-    <%= form_for :hotel, html: { class: "edit_post", id: "js-new-hotel", novalidate: true, data: { remote: true } } do |f| %>
+
+    <%= form_for @hotel, method: :patch, html: { class: "edit_post", id: "js-new-hotel", novalidate: true } do |f| %>
 
          <fieldset>
          <ul>
